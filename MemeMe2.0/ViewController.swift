@@ -77,10 +77,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func launchActivityView(_ sender: AnyObject) {
         if(imageViewOutlet != nil){
+
+            let memedImage = generateMemedImage()
+            let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
             
-            let image = generateMemedImage()
-            let nextController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            self.present(nextController, animated: true, completion: nil)
+            activityController.completionWithItemsHandler = { activity, success, items, error in
+                if success {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+            
+            present(activityController, animated: true, completion: nil)
+
         }
     }
     
@@ -94,8 +102,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.dismiss(animated: true, completion: nil)
     }
     
-    func generateMemedImage() -> UIImage
-    {
+    func generateMemedImage() -> UIImage {
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.isToolbarHidden = true
 

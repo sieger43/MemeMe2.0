@@ -10,8 +10,7 @@ import UIKit
 
 class MemeTableViewController: UITableViewController {
 
-    override func viewWillAppear(_ animated:Bool)
-    {
+    override func viewWillAppear(_ animated:Bool){
         super.viewWillAppear(animated)
 
         self.tableView.reloadData()
@@ -21,22 +20,17 @@ class MemeTableViewController: UITableViewController {
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
     
-    
     /**
      * Number of Rows
      */
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return memes.count
     }
     
-    
     /**
      * Cell For Row At Index Path
      */
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let meme = memes[indexPath.row]
